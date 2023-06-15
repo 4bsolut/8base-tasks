@@ -23,9 +23,9 @@
     "eslint-plugin-prettier": "^3.4.0"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "cypress:open": "cypress open",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "react-scripts  start",
+    "cypress": "cypress open",
+    "build": "react-scripts  build",
     "test": "react-scripts test",
     "lint": "eslint src/**/*.js"
   },

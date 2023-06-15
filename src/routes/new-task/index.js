@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
 
-export const NewTask = () => {
+const NewTask = () => {
   const [newTask, setNewTask] = useState({ task_name: '', description: '', status: false });
   const [userList, setUserList] = useState([]);
   const { loading, error, data } = useQuery(GET_USERS_LIST, { variables: String('cliqtuss300ib08miakzkat2u') });
@@ -46,10 +46,12 @@ export const NewTask = () => {
       history.push('/');
       history.replace('/tasks');
     } catch (error) {
+      toast.error('An error');
       console.error(error);
-    }
+    } 
   };
   return (
+    <>
     <div className="container m-15">
       <h2>Add a Task</h2>
       <form onSubmit={handleSubmit}>
@@ -96,5 +98,8 @@ export const NewTask = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
+
+export default NewTask;
