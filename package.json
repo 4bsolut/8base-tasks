@@ -1,0 +1,46 @@
+{
+  "name": "8base-react-starter-app",
+  "version": "2.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@8base/error-codes": "^1.0.22",
+    "@apollo/client": "^3.4.7",
+    "8base-react-sdk": "^2.3.0",
+    "8base-sdk": "^2.3.0",
+    "bootstrap": "^5.3.0",
+    "graphql": "^15.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-prettier": "^3.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "lint": "eslint src/**/*.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">= 12.x",
+    "npm": ">= 6.x"
+  }
+}
