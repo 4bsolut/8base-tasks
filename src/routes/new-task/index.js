@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { GET_USERS_LIST, SAVE_TASK_MUTATION } from 'shared/graphql';
 import { useQuery, useApolloClient } from '@apollo/client';
-import { useHistory } from 'react-router-dom'; 
+import { useHistory } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
-
-
-
 
 export const NewTask = () => {
   const [newTask, setNewTask] = useState({ task_name: '', description: '', status: false });
   const [userList, setUserList] = useState([]);
   const { loading, error, data } = useQuery(GET_USERS_LIST, { variables: String('cliqtuss300ib08miakzkat2u') });
   const apolloClient = useApolloClient();
-  const history = useHistory(); 
-  
+  const history = useHistory();
 
   const fetchUserList = async () => {
     if (loading) return <p>Loading...</p>;
@@ -24,11 +20,11 @@ export const NewTask = () => {
 
   useEffect(() => {
     fetchUserList();
-  },[loading, error, data]);
+  }, [loading, error, data]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    
+
     const newValue = type === 'checkbox' ? checked : value;
     setNewTask((prevState) => ({
       ...prevState,
@@ -36,22 +32,22 @@ export const NewTask = () => {
     }));
   };
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        apolloClient.mutate({
-          mutation: SAVE_TASK_MUTATION,
-          variables: {
-            input: newTask
-          } 
-        });
-        
-        setNewTask({ task_name: '', description: '', status: false });
-        toast.success('Task added!')
-        history.push('/');
-        history.replace('/tasks');
-      } catch (error) {
-        console.error(error);
-      }
+    e.preventDefault();
+    try {
+      apolloClient.mutate({
+        mutation: SAVE_TASK_MUTATION,
+        variables: {
+          input: newTask,
+        },
+      });
+
+      setNewTask({ task_name: '', description: '', status: false });
+      toast.success('Task added!');
+      history.push('/');
+      history.replace('/tasks');
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="container m-15">
@@ -63,6 +59,7 @@ export const NewTask = () => {
             type="text"
             className="form-control"
             name="task_name"
+            required
             value={newTask.task_name}
             onChange={handleChange}
           />
@@ -70,6 +67,7 @@ export const NewTask = () => {
         <div className="form-group my-4">
           <label>Assigned User:</label>
           <select
+            required
             className="form-control"
             name="user_assigned"
             value={newTask.user_assigned}
@@ -86,16 +84,17 @@ export const NewTask = () => {
         <div className="form-group my-4">
           <label>Description:</label>
           <textarea
+            required
             className="form-control"
             name="description"
             value={newTask.description}
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Add Task</button>
+        <button type="submit" className="btn btn-primary">
+          Add Task
+        </button>
       </form>
     </div>
   );
-  
 };
-
